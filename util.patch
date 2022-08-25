@@ -1,0 +1,20 @@
+--- /tmp/SBo/package-puppet/usr/lib64/ruby/site_ruby/3.0.0/puppet/util.rb	2022-02-22 16:35:26.786000000 -0800
++++ ./util.rb.patched	2022-02-22 17:39:39.415000000 -0800
+@@ -473,7 +473,7 @@
+     orig_verbose = $VERBOSE
+     $VERBOSE = nil unless Puppet::Util::Platform.jruby?
+     begin
+-      encoded += URI.escape(parts[:path]) unless parts[:path].nil?
++      encoded += URI::DEFAULT_PARSER.escape(parts[:path]) unless parts[:path].nil?
+     ensure
+       $VERBOSE = orig_verbose unless Puppet::Util::Platform.jruby?
+     end
+@@ -498,7 +498,7 @@
+   def uri_unescape(path)
+     orig_verbose = $VERBOSE
+     $VERBOSE = nil unless Puppet::Util::Platform.jruby?
+-    return URI.unescape(path)
++    return URI::DEFAULT_PARSER.unescape(path)
+   ensure
+     $VERBOSE = orig_verbose unless Puppet::Util::Platform.jruby?
+   end

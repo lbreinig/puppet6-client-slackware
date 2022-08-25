@@ -8,6 +8,8 @@
 *.log
 *.log.*
 *.sig
+*.new
+*.patched
 
 pkg/
 src/
